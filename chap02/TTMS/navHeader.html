@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>fff</title>
+	</head>
+
+	<body>
+		<div class="layui-logo">剧院票务管理系统</div>
+		<!-- 头部区域（可配合layui已有的水平导航） -->
+
+		<ul class="layui-nav layui-layout-right">
+			<li class="layui-nav-item">
+				<a href="">
+					<img class="layui-nav-img" id="img" src="http://120.77.215.146:8080/ttms3/upload/users/04153095.jpg"> 管理员
+				</a>
+				<dl class="layui-nav-child">
+					<dd>
+						<a href="">基本资料</a>
+					</dd>
+					<dd>
+						<a href="">安全设置</a>
+					</dd>
+				</dl>
+			</li>
+			<li class="layui-nav-item">
+				<a href="login.html">退出</a>
+			</li>
+		</ul>
+		<script>
+			(function() {
+				
+//				var title = document.getElementsByTagName('title')
+//				console.log(title[0].value);
+				//解析url
+				function parseUrl() {
+					var url = decodeURIComponent(location.href); //解决中文乱码问题
+					var i = url.indexOf('?');
+					if(i == -1) return;
+					var querystr = url.substr(i + 1);
+					var arr1 = querystr.split('&');
+					var arr2 = new Object();
+					for(i in arr1) {
+						var ta = arr1[i].split('=');
+						arr2[ta[0]] = ta[1];
+					}
+					return arr2;
+				}
+				//拿到传过来的值
+				var v = parseUrl();
+				var x = v['head_path'];
+				//	var y = v['pass'];
+				//	var z = v['type'];
+				//	将传过来的值展示到页面上
+				//	console.log(document.getElementById("emp_no"))
+//				document.getElementById("img").src = x;
+				//	document.getElementById("emp_pass").value = y;
+				//	document.getElementById("type").value = z;
+//				document.getElementById('img').src=$(user.head_path)
+
+			})();
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+
+	<body>
+		<div class="layui-layout layui-layout-admin">
+			<!--头部导航-->
+			<div id="page1" class="layui-header"></div>
+			<!--左侧导航-->
+			<div id="page2" class="layui-side layui-bg-black"></div>
+			<!-- 修改员工信息 -->
+			<div class="col-md-10" style="margin-left: 150px;margin-top: 30px;">
+				<div class="form-horizontal">
+					<div class="form-group">
+						<label for="emp_no" class="col-sm-2 control-label">用户编号</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="emp_no" name="emp_no" placeholder="请输入大小写字母和数字,长度6-20位" pattern="[a-zA-Z0-9]{6,20}" required="required" oninvalid="setCustomValidity('请输入大小写字母和数字,长度6-20位!')" oninput="setCustomValidity('')">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="emp_name" class="col-sm-2 control-label">密码</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="emp_pass" name="emp_pass" placeholder="请输入真实姓名,10字以内" pattern="^(0|[1-9][0-9]*)" required="required" oninvalid="setCustomValidity('请输入密码,10字以内!')" oninput="setCustomValidity('')">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="emp_tel_num" class="col-sm-2 control-label">用户类型</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="type" name="type" placeholder="请输入用户类型" pattern="^[0-9]*" required="required" oninvalid="setCustomValidity('管理员为1，普通员工为0')" oninput="setCustomValidity('')" value="">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label" style="color:red;font-weight: bold;"></div>
+						<div class="col-sm-6">
+							<button class="btn btn-primary" onclick="modifySubmit()">提交</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/ModifyUser.js"></script>
+		<script>
+			$("#page1").load("navHeader.html");
+			$("#page2").load("navLeft.html");
+		</script>
+	</body>
+
+</html>

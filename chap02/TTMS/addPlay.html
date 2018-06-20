@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>票务管理系统</title>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/search.css">
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="js/template.js"></script>
+		<script src="js/play2.js"></script>
+	</head>
+
+	<body>
+		<div class="layui-layout layui-layout-admin">
+			<!--头部导航-->
+			<div id="page1" class="layui-header" style="top: 0; position: fixed; width: 100%; "></div>
+			<!--左侧导航-->
+			<div id="page2" class="layui-side layui-bg-black"></div>
+			<!-- 增加剧目信息 -->
+			<div class="col-md-10" style="margin-left: 150px;margin-top: 120px;">
+				<div class="form-horizontal" role="form">
+						<div class="form-group">
+						<label for="play_type" class="col-sm-2 control-label">类型</label>
+						<div class="col-sm-6">
+							<select class="form-control" id="play_type">
+								<option value="1">古装剧</option>
+								<option value="2">动漫片</option>
+								<option value="3">生活剧</option>
+								<option value="4">恐怖片</option>
+								<option value="5">战争片</option>
+								<option value="6">科幻片</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="play_lang" class="col-sm-2 control-label">语言</label>
+						<div class="col-sm-6">
+							<select class="form-control" id="play_lang">
+								<option value="11">国语</option>
+								<option value="12">英语</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="play_name" class="col-sm-2 control-label">剧目名称</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="play_name" name="play_name" placeholder="请输入剧目名称" pattern="[a-zA-Z0-9\u4e00-\u9fa5]{2,10}" required="required" oninvalid="setCustomValidity('请输入剧目名称')" oninput="setCustomValidity('')">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="play_introduction" class="col-sm-2 control-label">剧目简介</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="play_introduction" name="play_introduction" placeholder="请输入剧目名称" pattern="[a-zA-Z0-9\u4e00-\u9fa5]{2,10}" required="required" oninvalid="setCustomValidity('请输入剧目名称')" oninput="setCustomValidity('')">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="play_image" class="col-sm-2 control-label">上传影片海报</label>
+						<div class="col-sm-6">
+							<input type="file" id="play_image" name="play_image" oninput="setCustomValidity('')" value="">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="play_length" class="col-sm-2 control-label">时长</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="play_length" name="play_length" placeholder="请输入剧目时长" pattern="^[0-9]*" required="required" oninvalid="setCustomValidity('请输入剧目时长')" oninput="setCustomValidity('')">
+						</div>
+					</div>
+				
+					
+					<div class="form-group">
+						<label for="play_ticket_price" class="col-sm-2 control-label">价格</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="play_ticket_price" name="play_ticket_price" placeholder="请输入剧目价格" pattern="^[0-9]*" required="required" oninvalid="setCustomValidity('请输入剧目价格!')" oninput="setCustomValidity('')">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="play_status" class="col-sm-2 control-label">剧目状态</label>
+						<div class="col-sm-6">
+							<select class="form-control" id="play_status">
+								<option value="0">待上映</option>
+								<option value="1">已下架</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label" style="color:red;font-weight: bold;"></div>
+						<div class="col-sm-6">
+							<!-- <input type="hidden" name="method" value="add"> -->
+							<button type="submit" class="btn btn-primary" onclick="addPlay()">提  交</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="layui/layui.js"></script>
+		<script>
+			$("#page1").load("navHeader.html");
+			$("#page2").load("navLeft.html");
+		</script>
+	</body>

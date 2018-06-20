@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+	<head>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title></title>
+		<script src="js/jquery-2.1.0.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/search.css">
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="js/employee.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/html" id="arttep">
+			{{each result as value}}
+
+			<tr class="success">
+				<td>{{value.emp_id}}</td>
+				<td>{{value.emp_no}}</td>
+				<td>{{value.emp_name}}</td>
+				<td>{{value.emp_tel_num}}</td>
+				<td>{{value.emp_addr}}</td>
+				<td>{{value.emp_email}}</td>
+				<td>
+					<a href="modifyEmployee.html?emp_id={{value.emp_id}}&emp_no={{value.emp_no}}&emp_name={{value.emp_name}}&emp_tel_num={{value.emp_tel_num}}&emp_addr={{value.emp_addr}}&emp_email={{value.emp_email}}"><button class="btn btn-primary">修改</button></a>
+				</td>
+				<td><button class="btn btn-danger" onclick="deleteEmployee({{value.emp_id}})">删除</button></td>
+			</tr>
+
+			{{/each}}
+		</script>
+	</head>
+
+	<body>
+		<div class="layui-layout layui-layout-admin">
+			<!--头部导航-->
+			<div id="page1" class="layui-header" style="top:0px; position: fixed; width: 100%;"></div>
+			<!--左侧导航-->
+			<div id="page2" class="layui-side layui-bg-black"></div>
+
+			<div class="form-inline" style="margin-top: 70px;">
+				<div class="form-group">
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" style="margin-left: 230px;margin-top: 20px;" onclick="javascript:window.location='addEmployee.html'">添加</button>
+				</div>
+				<div class="form-group" id="search">
+					<input type="search" class="form-control" placeholder="请输入用户编号..." name="emp_name" id="emp_search">
+					<button type="submit" class="btn btn-info" onclick="searchEmployee($('#emp_search').val())">搜索</button>
+				</div>
+			</div>
+			<div style="padding: 25px;">
+				<table class="table table-bordered" id="tab" style="width: 1460px; margin-left: 200px;">
+
+					<!-- On cells (`td` or `th`) -->
+					<tbody id="tbody">
+						<tr class="active">
+							<th>用户ID</th>
+							<th>用户编号</th>
+							<th>用户姓名</th>
+							<th>电话号码</th>
+							<th>住址信息</th>
+							<th>电子邮箱</th>
+							<th>修改</th>
+							<th>删除</th>
+						</tr>
+					</tbody>
+					<tbody id="tet">
+					</tbody>
+				</table>
+
+				<!-- 分页 -->
+				<div class="text-center">
+					<ul class="pagination">
+						<li>
+							<a href="employee.html">首页</a>
+						</li>
+						<li>
+							<a href="#">上一页</a>
+						</li>
+						<li>
+							<a href="#">下一页</a>
+						</li>
+						<li>
+							<a href="#">末页</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="layui/layui.js"></script>
+		<script>
+			$("#page1").load("navHeader.html");
+			$("#page2").load("navLeft.html");
+		</script>
+	</body>
+	<script>
+		window.onload = function() {
+//			$.ajax({
+//  type: 'HEAD', // 获取头信息，type=HEAD即可
+//  url : window.location.href,
+//  complete: function( xhr,data ){
+//      // 获取相关Http Response header
+//      var wpoInfo = {
+//          // 服务器端时间
+//          "date" : xhr.getResponseHeader('Date'),
+//          // 如果开启了gzip，会返回这个东西
+//          "contentEncoding" : xhr.getResponseHeader('Content-Encoding'),
+//          // keep-alive ？ close？
+//          "connection" : xhr.getResponseHeader('Connection'),
+//          // 响应长度
+//          "contentLength" : xhr.getResponseHeader('Content-Length'),
+//          // 服务器类型，apache？lighttpd？
+//          "server" : xhr.getResponseHeader('Server'),
+//          "vary" : xhr.getResponseHeader('Vary'),
+//          "transferEncoding" : xhr.getResponseHeader('Transfer-Encoding'),
+//          // text/html ? text/xml?
+//          "contentType" : xhr.getResponseHeader('Content-Type'),
+//          "cacheControl" : xhr.getResponseHeader('Cache-Control'),
+//          // 生命周期？
+//          "exprires" : xhr.getResponseHeader('Exprires'),
+//          "lastModified" : xhr.getResponseHeader('Last-Modified')
+//      };
+//      // 在这里，做想做的事。。。
+//      console.log(wpoInfo);
+//  }
+//});
+			$.ajax({
+				xhrFields:{
+				withCredentials: true 
+			},
+				url: "http://120.77.215.146:8080/ttms3/employee_list", //访问路径
+				type: "get",
+				dataType: "json",
+				success: function(e) {
+					console.log(e);
+					//             		console.log("成功");
+					var c = { result: e }
+					console.log(c);
+
+					var html = template('arttep', c);
+					$("#tet").html(html);
+				},
+				error: function(e) {
+					console.log(e);
+					console.log("失败");
+				}
+
+			});
+
+		}
+
+		function deleteEmployee(emp_id) {
+			$.ajax({
+				url: "http://120.77.215.146:8080/ttms3/employee_delete", //访问路径
+				type: "post",
+				data: {
+					"emp_id": emp_id
+				},
+				dataType: "json",
+				success: function(e) {
+					alert("确定删除吗？");
+					console.log(e);
+					console.log("成功");
+					window.location.href = "employee.html";
+				},
+				error: function(e) {
+					console.log(e);
+					console.log("失败");
+				}
+
+			});
+		}
+
+		function searchEmployee(emp_no) {
+			$.ajax({
+				url: "http://120.77.215.146:8080/ttms3/employee_search", //访问路径
+				type: "post",
+				data: {
+					"emp_no": emp_no
+				},
+				dataType: "json",
+				success: function(e) {
+					console.log(e);
+					console.log("成功");
+//					var array = new Array();
+//					array.push(e);
+					var c = { result: e }
+					console.log(c);
+
+					var html = template('arttep', c);
+					$("#tet").html(html);
+				},
+				error: function(e) {
+					console.log(e);
+					console.log("失败");
+				}
+
+			});
+		}
+	</script>
+
+</html>

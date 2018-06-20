@@ -1,0 +1,82 @@
+<!DOCTYPE html>  
+<html>  
+    <head>  
+        <meta charset="utf-8" />  
+        <title>测试</title>  
+        <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>  
+       <script type="text/javascript" src="js/template.js" ></script>
+       <script type="text/html" id="arttep">
+			{{each result as value}}
+				<h1>{{value.phone}}</h1>	
+				<p>{{value.name}}</p>
+				<p>{{value.email}}</p>	
+			{{/each}}
+		</script>
+    </head>  
+    <body>  
+       <button onclick="ajaxFileUpload()">测试</button>
+       <div id="tet">
+			<!--填充在此-->
+		</div>
+    </body>  
+    <script>  
+        function ajaxFileUpload() {  
+        
+            $.ajax({  
+                url : "studio.json",//访问路径
+                type:"get",  
+                dataType :"json",     
+            	success:function(e){  
+               		console.log(e);
+//             		console.log("成功");
+               		var c={result:e}
+               		console.log(c);
+               		
+					var html = template('arttep', c);
+					$("#tet").html(html);
+             },     
+            error:function(e){  
+                console.log(e);
+                console.log("失败");
+            }  
+  
+        });  
+        }
+          
+    </script>  
+</html>  
+
+
+
+<script>  
+        function ajaxFileUpload() {  
+        
+            $.ajax({  
+                url : "studio.json",//访问路径
+                type:"post",
+                data: {
+                    "studio_id":document.getElementById('studio_id'),
+                    "studio_name": document.getElementById('studio_name'),
+                    "studio_row_count":document.getElementById('studio_row_count'),
+                    "studio_col_count": document.getElementById('studio_col_count'),
+                    "studio_introduction": document.getElementById('studio_introduction')
+                },
+                dataType :"json",     
+              success:function(e){  
+                  console.log(e);
+//                console.log("成功");
+                  var c={result:e}
+                  console.log(c);
+                  
+          var html = template('arttep', c);
+          $("#tet").html(html);
+             },     
+            error:function(e){  
+                console.log(e);
+                console.log("失败");
+            }  
+  
+        });  
+        }
+          
+    </script>  

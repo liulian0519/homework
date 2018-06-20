@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>票务管理系统</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/search.css">
+    <link rel="stylesheet" href="layui/css/layui.css">  
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/studio.js"></script>
+    <script src="js/template.js"></script>
+    <script type="text/html" id="arttep">
+      {{each result as value}}
+      <tr class="success">
+                <td>{{value.studio_id}}</td>
+                <td>{{value.studio_name}}</td>
+                <td>{{value.studio_row_count}}</td>
+                <td>{{value.studio_col_count}}</td>
+                <td>{{value.studio_introduction}}</td>
+                <td><a href="modifyStudio.html?studio_id={{value.studio_id}}&studio_name={{value.studio_name}}&studio_row_count={{value.studio_row_count}}&studio_col_count={{value.studio_col_count}}&studio_introduction={{value.studio_introduction}}"><button class="btn btn-primary">修改</button></a></td> 
+                <td><a class="btn btn-danger" onclick="deleteStudio({{value.studio_id}})">删除</a></td>
+
+                <td >
+                  <a href="seat.html?studio_row_count={{value.studio_row_count}}&studio_col_count={{value.studio_col_count}}">
+                  	<button class="layui-btn layui-btn-radius" ><i class="layui-icon"></i></button>
+                  </a>
+                </td>
+               <tr>
+      {{/each}}
+    </script>
+    <title>在此处插入标题</title>
+</head>
+<body>
+    <div class="layui-layout layui-layout-admin">
+   	<!--头部导航-->
+			<div id="page1" class="layui-header"></div>
+			<!--左侧导航-->
+			<div id="page2" class="layui-side layui-bg-black"></div>
+  
+  <div>
+    <!-- 内容主体区域 -->
+
+<div class="form-inline">
+    <div class="form-group">
+            <a href="addStudio.html"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" 
+                style="margin-left: 230px;margin-top: 20px;" >添加</button></a>
+    </div>
+
+    <div class="form-group" id="search">
+			<input class="form-control" id="searchstudio">
+        <button  class="btn btn-info" onclick="searchStudio()">搜索</button>
+				
+    </div>
+</div>
+<div style="padding: 15px;">
+  <table class="table table-bordered" id="tab" style="width: 1460px; margin-left: 200px;">
+    <tbody id="tbody">
+      <tr class="active">
+        <td >演出厅ID</td>
+        <td >演出厅名称</td>
+        <td >行数</td>
+        <td >列数</td>
+        <td >简介</td>
+        <td>修改</td>
+        <td>删除</td>        
+        <td>座位</td>
+      </tr>
+    </tbody>
+    <tbody id="tet">
+    </tbody>
+  </table>
+    <!-- 分页 -->
+</div>
+</div>
+  
+
+</div>
+  <script src="layui/layui.js"></script>
+   <script src="js/studio.js"></script>
+	<script>
+          	$("#page1").load("navHeader.html");
+          	$("#page2").load("navLeft.html");
+    	</script>
+</body>
+</html>

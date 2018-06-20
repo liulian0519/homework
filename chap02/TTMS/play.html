@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>票务管理系统</title>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/search.css">
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/film.css" />
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/play.js"></script>
+		<script src="js/play2.js"></script>
+
+		<script src="js/template.js"></script>
+		<script type="text/html" id="arttep">
+			{{each result as value}}
+			<div class='div1'>
+				<div class='box'>
+					<img src={{value.play_image}}>
+					<div class='box-content'>
+						<!--<p>ID：{{value.play_id}}</p>-->
+						<p>片名：{{value.play_name}}</p>
+						<!--<p>时长：{{value.play_length}}</p>-->
+						<p>类型：{{value.data_dict.dict_value}}</p>
+						<!--    <p>语言：{{value.play_lang}}</p>-->
+						<p>片长：{{value.play_length}}</p>
+						<p><button type='button' class='btn btn-danger' onclick="deletePlay({{value.play_id}})">删除</button></p>
+					</div>
+				</div>
+				<div class="div2">
+					<a href='schedule.html?play_id={{value.play_id}}'>
+						<button type='button' class='btn btn-primary'>购票</button>
+					</a>
+				</div>
+			</div>
+			{{/each}}
+		</script>
+		<!--<title>在此处插入标题</title>-->
+	</head>
+
+	<body>
+		<div class="layui-layout layui-layout-admin">
+			<!--头部导航-->
+			<div id="page1" class="layui-header" style="top: 0; position: fixed; width: 100%; "></div>
+			<!--左侧导航-->
+			<div id="page2" class="layui-side layui-bg-black"></div>
+
+			<div style="margin-top:80px;">
+
+				<a href="addPlay.html"><button type="button" class="btn btn-info" style="margin-left: 250px;margin-top:12px;">添加</button></a>
+
+				<div style=" margin-left: 220px;" id="tet">
+
+				</div>
+
+			</div>
+
+		</div>
+		<script src="layui/layui.js"></script>
+		<script>
+			$("#page1").load("navHeader.html");
+			$("#page2").load("navLeft.html");
+		</script>
+	</body>
+
+</html>

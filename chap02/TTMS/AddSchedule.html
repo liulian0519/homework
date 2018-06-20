@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>票务管理系统</title>
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+
+	<body>
+		<div class="layui-layout layui-layout-admin">
+			<!--头部导航-->
+			<div id="page1" class="layui-header"></div>
+			<!--左侧导航-->
+			<div id="page2" class="layui-side layui-bg-black"></div>
+			<!-- 增加演出计划-->
+			<div class="col-md-10" style="margin-left: 150px;margin-top: 30px;">
+				<div class="form-horizontal">
+					<div class="form-group">
+						<label for="play_name" class="col-sm-2 control-label">剧目名称</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="play_name" name="play_name" placeholder="请输入20以内的中文或英文" pattern="[a-zA-Z0-9]{6,20}" required="required" oninvalid="setCustomValidity('请输入大小写字母和数字,长度6-20位!')" oninput="setCustomValidity('')">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="studio_name" class="col-sm-2 control-label">演出厅名称</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="studio_name" name="studio_name" placeholder="请输入10个字以内的中文" pattern="^(0|[1-9][0-9]*)" required="required" oninvalid="setCustomValidity('请输入密码,10字以内!')" oninput="setCustmoValidity('')">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="schedue_time" class="col-sm-2 control-label">上映时间</label>
+						<div class="col-sm-6">
+							<input type="text" class="layui-input form-control" id="schedue_time" placeholder="请选择上映时间">
+							<!--<input name="time" onkeypress="datestring="2006-12-25 09:12:35";var re=/^(\d{4}-\d{1,2}-\d{1,2})(\s?\d{2}:\d{2}:\d{2})?$/ alert(re.test(datestring));" />-->
+							<!--<input type="datetime-local" pattern="YYYY-MM-dd hh:mm:ss" class="form-control" id="schedue_time" name="schedue_time" placeholder="请选择上映时间" pattern="^[0-9]*" required="required" oninvalid="setCustomValidity('管理员为1，普通员工为0')" oninput="setCustomValidity('')">-->
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ticket_price" class="col-sm-2 control-label">票价</label>
+						<div class="col-sm-6">
+							 <!--<input type="text" class="layui-input" id="test1">-->
+							<input type="input" class="form-control" id="schedue_ticket_price" name="ticket_price" placeholder="请输入数字" oninput="setCustomValidity('')">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label"></div>
+						<div class="col-sm-6">
+							<button class="btn btn-primary" onclick="tijiao()">提  交</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="layui/layui.js"></script>
+		<script type="text/javascript" src="js/AddSchedule.js"></script>
+		<script>
+          	$("#page1").load("navHeader.html");
+          	$("#page2").load("navLeft.html");
+    	</script>
+    	<script>
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  
+  //执行一个laydate实例
+  laydate.render({
+    elem: '#schedue_time', //指定元素
+    type:'datetime'
+  });
+ 
+});
+</script>
+	</body>
+
+</html>

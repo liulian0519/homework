@@ -1,0 +1,88 @@
+<!DOCTYPE HTML >
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>票务管理系统</title>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/search.css">
+  <link rel="stylesheet" href="layui/css/layui.css">  
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/employee.js"></script>
+  <script src="js/template.js"></script>
+  
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+	<!--头部导航-->
+			<div id="page1" class="layui-header"></div>
+			<!--左侧导航-->
+			<div id="page2" class="layui-side layui-bg-black"></div>
+  <!-- 更新员工信息 -->
+  <div class="col-md-10" style="margin-left: 150px;margin-top: 30px;">
+      <div class="form-horizontal" role="form" >
+          
+                <div class="form-group">
+                    <label for="studio_id" class="col-sm-2 control-label ">演出厅ID</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="studio_id" name="studio_id" pattern="^[0-9]" required="required" readonly="true" oninput="setCustomValidity('')" value="123">
+                </div>
+                </div>
+                <div class="form-group">
+                    <label for="studio_name" class="col-sm-2 control-label">演出厅名称</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="studio_name" name="studio_name" 
+                            placeholder="请输入演出厅名称" pattern=".{2,30}" 
+                            required="required" oninvalid="setCustomValidity('请输入演出厅名称')" 
+                            oninput="setCustomValidity('')" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="studio_row_count" class="col-sm-2 control-label">行数</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="studio_row_count" name="studio_row_count"
+                            placeholder="请输入演出厅行数" pattern="^[0-9]"
+                            required="required" oninvalid="setCustomValidity('行数不能超过9')"
+                            oninput="setCustomValidity('')" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="studio_col_count" class="col-sm-2 control-label">列数</label>
+                    <div class="col-sm-6">
+                        <input type="tel" class="form-control" id="studio_col_count" name="studio_col_count"
+                            placeholder="请输入演出厅列数" pattern="^[0-9]" 
+                            required="required" oninvalid="setCustomValidity('列数不能超过9!')"
+                            oninput="setCustomValidity('')" value="" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="studio_introduction" class="col-sm-2 control-label">介绍</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="studio_introduction" name="studio_introduction"
+                            placeholder="请介绍演出厅" pattern=".{2,30}" 
+                            required="required" oninvalid="setCustomValidity('请介绍演出厅!')"
+                            oninput="setCustomValidity('')" value="">
+                    </div>
+                </div>
+          <div class="form-group">
+              <div class="col-sm-2 control-label" style="color:red;font-weight: bold;"></div>
+              <div class="col-sm-6">
+                  <!-- <input type="hidden" name="method" value="update"> -->
+                  <button type="submit" class="btn btn-primary" onclick="modifyStudio()">修  改</button>   
+                  
+              </div>
+          </div>
+      </div>
+
+      </div>
+    </div>
+  <script src="layui/layui.js"></script>
+  <script src="js/studio.js"></script>
+  <script>
+			$("#page1").load("navHeader.html");
+			$("#page2").load("navLeft.html");
+		</script>
+</body>
+
+</html>

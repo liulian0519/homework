@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title></title>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/search.css">
+		<link rel="stylesheet" href="css/user.css" />
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script type="text/javascript" src="js/template.js"></script>
+		<script src="js/user.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/html" id="arttep">
+			{{each result as value}}
+			<tr class="success">
+				<td>{{value.emp_no}}</td>
+				<td>{{value.emp_pass}}</td>
+				<td>{{value.type}}</td>
+				<td>
+					<a href="ModifyUser.html?number={{value.emp_no}}&pass={{value.emp_pass}}&type={{value.type}}">
+						<button class="btn btn-primary">修改</button>
+					</a>
+				</td>
+				<td>
+					<button class="btn btn-danger" onclick="deleteUser('{{value.emp_no}}')">删除</button>
+				</td>
+			</tr>
+			{{/each}}
+		</script>
+	</head>
+
+	<body>
+		<div class="layui-layout layui-layout-admin">
+			<!--头部导航-->
+			<div id="page1" class="layui-header"></div>
+			<!--左侧导航-->
+			<div id="page2" class="layui-side layui-bg-black"></div>
+			<div>
+				<div class="form-inline">
+					<div class="form-group">
+						<button class="addbtn btn btn-info" onclick="javascript:window.location='AddUser.html'">添加</button>
+					</div>
+					<div class="form-group" id="search">
+						<input type="search" id="searchById" class="form-control" placeholder="search...">
+						<button class="btn btn-info" onclick="SearchById()">搜索</button>
+					</div>
+					
+				</div>
+				
+				<div style="padding: 25px;">
+					<table class="table table-bordered" id="tab" style="width: 1460px; margin-left: 200px;">
+						<tbody id="tbody">
+							<tr class="active">
+								<th>编号</th>
+								<th>密码</th>
+								<th>类型</th>
+								<th>修改</th>
+								<th>删除</th>
+							</tr>
+							<tbody id="tet">
+								<!--填充在此-->
+							</tbody>
+
+						</tbody>
+					</table>
+					<!--分页-->
+					
+					<!--<div class="text-center">
+						<nav aria-label="Page navigation ">
+							<ul class="pagination  pagination-lg">
+								<!--<li>
+									<a href="#" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+									</a>
+								</li>-->
+					<!--<li>
+									<a href="#" class="test01" id="ss" onclick="test01(this.classList[0])">1</a>
+								</li>
+								<li>
+									<a href="#" class="test02" onclick="test02(this.classList[0])">2</a>
+								</li>
+								<li>
+									<a href="#" class="test03" onclick="test03(this.classList[0])">3</a>
+								</li>
+								<li>
+									<a href="#" class="test04" onclick="test04(this.classList[0])">4</a>
+								</li>
+								<li>
+									<a href="#" class="test05" onclick="test05(this.classList[0])">5</a>
+								<<!--/li-->
+					<!--<li>
+									<a href="#" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>-->
+					<!--</ul>
+						</nav>
+					</div>-->
+				</div>
+			</div>
+		</div>
+		<script src="layui/layui.js" charset="utf-8"></script>
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script>
+          	$("#page1").load("navHeader.html");
+          	$("#page2").load("navLeft.html");
+    	</script>
+	
+	</body>
+
+</html>

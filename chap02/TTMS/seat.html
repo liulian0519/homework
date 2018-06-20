@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>票务管理系统</title>
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css"><br />
+		<link rel="stylesheet" href="layui/css/seat.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	</head>
+
+	<body>
+		<div class="layui-layout layui-layout-admin">
+			<!--头部导航-->
+			<div id="page1" class="layui-header" style="top: 0; position: fixed; width: 100%; "></div>
+			<!--左侧导航-->
+			<div id="page2" class="layui-side layui-bg-black"></div>
+
+			<!--售票界面-->
+			<div class="col-md-3"></div>
+			<div class="col-md-7" style="width: 700px;margin-left: 180px;padding-top: 50px;">
+				<div id="screen" style="margin-left: 0px;">
+					<p>屏幕</p>
+					<div class="artic"></div>
+					<!--//<img src="https://raw.githubusercontent.com/special-wen/demo/master/demo_seat/image/rectangle.png" alt="">-->
+				</div>
+				<div id="seat"></div>
+			</div>
+			<div  style="float: right; margin-right: 50px;">
+				<!--图标说明-->
+				<div id="icon">
+					<ul>
+						<li class="active">图标说明</li>
+						<!--<li>已售出 <img src="img/select.png" alt="" style="padding-left: 20px;"></li>-->
+						<li>座位正常<img src="img/seat.png" alt="" style="padding-left: 25px;"></li>
+						<li>座位坏掉 <img src="img/broken.png" alt="" style="padding-left: 20px;"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+			<!--更改座位状态-->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" id='modal'>
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+						<h4 class="modal-title" id="myModalLabel">售票</h4>
+					</div>
+					<div class="modal-body">
+						<p id='title'></p>
+						<form role="form">
+							<div class="form-group">
+								<select class="form-control" id='seatState'>
+									<option value='active'>座位正常</option>
+									<!--<option value='aisle'>售出</option>-->
+									<option value='broken'>座位坏掉</option>
+								</select>
+							</div>
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+						<button type="button" class="btn btn-primary" id='update' data-dismiss="modal">提交更改</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/seat.js"></script>
+		<script>
+			$("#page1").load("navHeader.html");
+			$("#page2").load("navLeft.html");
+		</script>
+	</body>
+
+</html>
