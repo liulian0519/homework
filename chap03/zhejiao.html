@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>css-折角</title>
+		<style type="text/css">
+			.box{
+				width:360px;
+				height: 100px;
+				margin:100px;
+				padding: 20px;
+				position: relative;
+				border-radius: 0.5em;
+				/*减去一个折角*/
+				background: linear-gradient(210deg,transparent 1.5em,blue 0);
+				
+			}
+			/*添加一个新折角*/
+			.box::before{
+				content: '';
+				position: absolute;
+            	top: 0;
+            	right: 0;
+            	width: 1.73em;
+            	height: 3em;
+				background: linear-gradient(240deg,transparent 50%,blue 0);
+				transform: translateY(-1.3em) rotate(-30deg);
+				transform-origin: bottom right;
+				border-bottom-left-radius: inherit;
+    			box-shadow: -0.2em 0.2em 0.3em -0.1em #065206;  /*添加阴影*/
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			春花秋月何时了？ 往事知多少？小楼昨夜又东风，故国不堪回首月明中。
+			雕栏玉砌应犹在，只是朱颜改。 问君能有几多愁？恰似一江春水向东流。
+		</div>
+	</body>
+</html>
